@@ -1,7 +1,7 @@
 {
   "name": "react-mask-io",
   "description": "Masked input component for React",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "homepage": "https://github.com/GabrielBorges2000/react-mask-io",
   "license": "MIT",
   "author": "Gabriel Borges <gabriel.vscode@gmail.com>",
