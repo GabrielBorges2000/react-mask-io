@@ -11,6 +11,12 @@ export interface InputState {
   value: string;
   selection: Selection;
 }
+interface ChildrenProps {
+  value: string;
+  disabled?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+}
 
 export interface InputMaskProps {
   value?: string;
@@ -25,12 +31,7 @@ export interface InputMaskProps {
   }) => InputState;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  children: (props: {
-    value: string;
-    disabled?: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  }) => ReactNode;
+  children: (props: ChildrenProps) => ReactNode;
 }
 
 function applyMask(value: string, mask?: Mask | null): string {
@@ -87,9 +88,19 @@ function applyMask(value: string, mask?: Mask | null): string {
         vi++;
         i--;
       }
+    } else if (maskValue === "*") {
+      if (/[A-Za-z0-9]/.test(valueInput)) {
+        result += valueInput;
+        vi++;
+      } else {
+        vi++;
+        i--;
+      }
     } else {
-      result += maskValue;
-      if (valueInput === maskValue) vi++;
+      if (vi > 0) {
+        result += maskValue;
+        if (valueInput === maskValue) vi++;
+      }
     }
   }
 

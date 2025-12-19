@@ -46,6 +46,7 @@ This ensures complete compatibility with any input component.
 
 - `9` → number (0–9)
 - `a` → letter (A–Z, converted to uppercase)
+- `*` → alphanumeric (A-Z, 0-9)
 - any other character → literal
 
 Example:
