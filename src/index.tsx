@@ -35,7 +35,9 @@ export interface InputMaskProps {
 }
 
 function applyMask(value: string, mask?: Mask | null): string {
-  if (!mask) return value;
+  if (!mask) {
+    return value;
+  }
 
   if (typeof mask === "function") {
     return mask(value);
@@ -97,9 +99,9 @@ function applyMask(value: string, mask?: Mask | null): string {
         i--;
       }
     } else {
-      if (vi > 0) {
-        result += maskValue;
-        if (valueInput === maskValue) vi++;
+      result += maskValue;
+      if (valueInput === maskValue) {
+        vi++;
       }
     }
   }
